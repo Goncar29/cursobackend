@@ -22,16 +22,22 @@ router.get('/filter', (req, res) => { // ruta estatica, 1° lugar
 
 router.get('/:id', (req, res) => {
 	const { id } = req.params;
-	res.json({
-		id,
-		name: 'Product 2',
-		price: 2000
-	})
+	if (id === '999') {
+		res.status(404).json({
+			message: 'not found'
+		})
+	} else {
+		res.status(200).json({
+			id,
+			name: 'Product 2',
+			price: 2000
+		})
+	}
 })
 
 router.post('/', (req, res) => {
   const body = req.body;
-  res.json({
+  res.status(201).json({
     message: "Created",
     data: body
   })
@@ -50,7 +56,7 @@ router.patch('/:id', (req, res) => {
 router.delete('/:id', (req, res) => {
   const { id } = req.params;
   res.json({
-    message: "Update",
+    message: "Deleted",
     id
   })
 })
