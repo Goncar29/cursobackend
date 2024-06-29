@@ -1,22 +1,24 @@
 const express = require('express');
-const ProductService = require('./../services/product.service')
-const router = express.Router()
+const ProductService = require('./../services/product.service');
+const router = express.Router();
 const service = new ProductService();
 
-router.get('/', async (req, res) => { // ruta dinamica, 2° lugar
+router.get('/', async (req, res) => {
+	// ruta dinamica, 2° lugar
 	const products = await service.find();
-		res.json(products)
-})
+	res.json(products);
+});
 
-router.get('/filter', async (req, res) => { // ruta estatica, 1° lugar
-	res.send('Yo soy un filter')
-})
+router.get('/filter', async (req, res) => {
+	// ruta estatica, 1° lugar
+	res.send('Yo soy un filter');
+});
 
 router.get('/:id', async (req, res, next) => {
 	try {
 		const { id } = req.params;
 		const product = await service.findOne(id);
-		res.json(product)
+		res.json(product);
 	} catch (error) {
 		next(error);
 	}
@@ -24,25 +26,25 @@ router.get('/:id', async (req, res, next) => {
 
 router.post('/', async (req, res) => {
 	const body = req.body;
-	const newProduct = await service.create(body)
-	res.status(201).json(newProduct)
-})
+	const newProduct = await service.create(body);
+	res.status(201).json(newProduct);
+});
 
 router.patch('/:id', async (req, res, next) => {
 	try {
 		const { id } = req.params;
 		const body = req.body;
-		const product = await service.update(id, body)
+		const product = await service.update(id, body);
 		res.json(product);
 	} catch (error) {
 		next(error);
 	}
-})
+});
 
 router.delete('/:id', async (req, res) => {
 	const { id } = req.params;
-	const product = await service.delete(id)
-	res.json(product)
-})
+	const product = await service.delete(id);
+	res.json(product);
+});
 
 module.exports = router;

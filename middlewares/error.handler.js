@@ -2,24 +2,24 @@ function logErrors(err, req, res, next) {
 	console.log('logErrors');
 	console.error(err);
 	next(err);
-};
+}
 
 function errorHandler(err, req, res, next) {
 	console.log('errorHandler');
 	res.status(500).json({
 		message: err.message,
-		stack: err.stack
+		stack: err.stack,
 	});
 }
 
 function boomErrorHandler(err, req, res, next) {
 	console.log('boomErrorHandler');
-	if(err.isBoom) {
+	if (err.isBoom) {
 		const { output } = err;
-    res.status(output.statusCode).json(output.payload);
+		res.status(output.statusCode).json(output.payload);
 	} else {
-    next(err);
-    }
+		next(err);
+	}
 }
 
 module.exports = { logErrors, errorHandler, boomErrorHandler };
