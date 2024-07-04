@@ -10,11 +10,15 @@
 
 <body>
 	<script>
-		(async () => {
-			const response = await fetch('http://localhost:5500/api/v1/products');
-			const data = await response.json();
-			console.log(data);
-		})();
+        (async () => {
+            try {
+                const response = await fetch('http://localhost:4000/api/v1/products/');
+                const data = await response.json();
+                console.log(data);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        })();
 	</script>
 </body>
 
