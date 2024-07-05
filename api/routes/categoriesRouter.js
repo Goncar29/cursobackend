@@ -22,6 +22,7 @@ router.get('/:id',
 		try {
 			const { id } = req.params;
 			const category = await service.findOne(id);
+			res.json(category);
 		} catch (error) {
 			next(error);
 		}

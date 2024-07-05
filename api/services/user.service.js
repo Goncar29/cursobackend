@@ -1,6 +1,6 @@
 const boom = require('@hapi/boom');
 
-class CategoryService {
+class UserService {
 
 	constructor() {
 	}
@@ -26,4 +26,4 @@ class CategoryService {
 	}
 }
 
-module.exports = CategoryService;
+module.exports = UserService;
