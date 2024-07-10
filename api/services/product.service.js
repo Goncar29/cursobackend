@@ -1,11 +1,15 @@
 const { faker } = require('@faker-js/faker');
 const boom = require('@hapi/boom');
 
+const pool = require('../libs/postgres.pool');
+
 class ProductService {
 	constructor() {
 		this.products = [];
 		// Vamos a decir que corra una instancia del servicio, va a empezar y generar los productos:
 		this.generate();
+		this.pool = pool;
+		this.pool.on('error', (err) => console.error(err));
 	}
 	// será el metodo para generar con la datafake
 	generate() {
@@ -30,12 +34,10 @@ class ProductService {
 		return newProduct;
 	}
 
-	find() {
-		return new Promise((resolve, reject) => {
-			setTimeout(() => {
-				resolve(this.products);
-			}, 2000);
-		});
+	async find() {
+		const query = 'SELECT * FROM task';
+		const result = await this.pool.query(query);
+		return result.rows;
 	}
 
 	async findOne(id) {
