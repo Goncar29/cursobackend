@@ -1,15 +1,13 @@
 const { faker } = require('@faker-js/faker');
 const boom = require('@hapi/boom');
 
-const pool = require('../libs/postgres.pool');
+const sequelize = require('../libs/sequelize');
 
 class ProductService {
 	constructor() {
 		this.products = [];
 		// Vamos a decir que corra una instancia del servicio, va a empezar y generar los productos:
 		this.generate();
-		this.pool = pool;
-		this.pool.on('error', (err) => console.error(err));
 	}
 	// será el metodo para generar con la datafake
 	generate() {
@@ -36,8 +34,8 @@ class ProductService {
 
 	async find() {
 		const query = 'SELECT * FROM task';
-		const result = await this.pool.query(query);
-		return result.rows;
+		const [data] = await sequelize.query(query);
+		return data;
 	}
 
 	async findOne(id) {
