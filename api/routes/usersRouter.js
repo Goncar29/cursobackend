@@ -28,7 +28,7 @@ router.get('/:id',
 		}
 });
 
-router.post('/:id',
+router.post('/',
 	validatorHandler(createUserSchema, 'body'),
 	async (req, res, next) => {
 		try {
