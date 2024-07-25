@@ -28,7 +28,7 @@ router.get('/:id',
 		}
 });
 
-router.post('/:id',
+router.post('/',
 	validatorHandler(createCategorySchema, 'body'),
 	async (req, res, next) => {
 		try {

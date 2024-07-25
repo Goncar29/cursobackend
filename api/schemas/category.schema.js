@@ -1,21 +1,21 @@
 const Joi = require('joi');
 
-const id = Joi.string().uuid();
+const id = Joi.number().integer();
 const name = Joi.string().min(3).max(15);
 const image = Joi.string().uri();
 
-const createCategoryScheme = Joi.object({
+const createCategorySchema = Joi.object({
 	name: name.required(),
 	image: image.required()
 });
 
-const updateCategoryScheme = Joi.object({
+const updateCategorySchema = Joi.object({
 	name: name,
 	image: image
 });
 
-const getCategoryScheme = Joi.object({
+const getCategorySchema = Joi.object({
 	id: id.required(),
 });
 
-module.exports = { createCategoryScheme, updateCategoryScheme, getCategoryScheme };
+module.exports = { createCategorySchema, updateCategorySchema, getCategorySchema };
