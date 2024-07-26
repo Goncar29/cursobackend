@@ -45,7 +45,6 @@ router.post('/',
 		} catch (error) {
 			next(error)
 		}
-
 	}
 );
 
