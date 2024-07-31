@@ -4,7 +4,7 @@ const { PRODUCT_TABLE } = require('./product.model');
 
 const ORDER_PRODUCT_TABLE = 'orders_products'; // nombre de la tabla
 
-const orderProductSchema = {
+const OrderProductSchema = {
 	// El esquema define la estructura de la BD.
 	id: {
 		allowNull: false,
@@ -55,10 +55,10 @@ class OrderProduct extends Model {
 		return {
 		sequelize,
 		tableName: ORDER_PRODUCT_TABLE,
-		modelName: 'OrderProdct',
+		modelName: 'OrderProduct',
 		timestamps: false,
 		};
 	}
 }
 
-module.exports = { OrderProduct, ORDER_PRODUCT_TABLE, orderProductSchema };
+module.exports = { OrderProduct, ORDER_PRODUCT_TABLE, OrderProductSchema };
