@@ -11,7 +11,7 @@ const config = {
 
 	isProd: process.env.NODE_ENV === 'production',
 	dbEngine: process.env.DB_ENGINE, // postgres
-	dbUrl: process.env.DATABASE_URL,
+	dbUrl: process.env.POSTGRES_URL,
 }
 
 module.exports = { config };
