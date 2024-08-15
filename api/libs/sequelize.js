@@ -10,7 +10,7 @@ const URI = `postgres://${USER}:${PASSWORD}@${config.dbHost}:${config.dbPort}/${
 
 const options = {
 	dialect: config.dbEngine,
-	logging: config.isProd? false : console.log,
+	logging: config.isProd ? false : console.log,
 };
 
 if (config.isProd) {
