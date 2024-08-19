@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const routerApi = require('./routes');
+const { config } = require('./config/config');
 const {
 	logErrors,
 	ormErrorHandler,
@@ -9,7 +10,7 @@ const {
 } = require('./middlewares/error.handler');
 
 const app = express();
-const port = process.env.PORT || 4000;
+const port = config.port || 4000;
 
 app.use(express.json());
 
