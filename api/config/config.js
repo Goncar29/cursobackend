@@ -8,6 +8,7 @@ const config = {
 	dbHost: process.env.DB_HOST,
 	dbName: process.env.DB_NAME,
 	dbPort: process.env.DB_PORT,
+	dbUri: process.env.DATABASE_URL,
 	isProd: process.env.NODE_ENV === 'production',
 	dbEngine: process.env.DB_ENGINE, // postgres
 	dbUrl: process.env.POSTGRES_URL,
