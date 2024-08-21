@@ -12,6 +12,7 @@ const config = {
 	isProd: process.env.NODE_ENV === 'production',
 	dbEngine: process.env.DB_ENGINE, // postgres
 	dbUrl: process.env.POSTGRES_URL,
+	apiKey: process.env.API_KEY,
 }
 
 module.exports = { config };

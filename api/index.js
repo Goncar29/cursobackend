@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const routerApi = require('./routes');
 const { config } = require('./config/config');
+const { checkApiKey } = require('./middlewares/auth.handler');
 const {
 	logErrors,
 	ormErrorHandler,
@@ -31,8 +32,8 @@ app.get('/api', (req, res) => {
 	res.send(`Hola mi server en express!!!`);
 });
 
-app.get('/api/nueva-ruta', (req, res) => {
-	res.send(`Hola soy una nueva ruta!!!`);
+app.get('/nueva-ruta', checkApiKey, (req, res) => {
+	res.send('Hola, soy una nueva ruta');
 });
 
 app.listen(port, () => {
