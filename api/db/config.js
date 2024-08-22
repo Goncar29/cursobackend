@@ -2,7 +2,7 @@ const { config } = require('../config/config');
 
 module.exports = {
 	development: {
-		url: config.dbUri,
+		url: config.dbUrl,
 		dialect: config.dbEngine,
 		dialectOptions: {
 			ssl: {
