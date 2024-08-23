@@ -3,12 +3,8 @@ const cors = require('cors');
 const routerApi = require('./routes');
 const { config } = require('./config/config');
 const { checkApiKey } = require('./middlewares/auth.handler');
-const {
-	logErrors,
-	ormErrorHandler,
-	errorHandler,
-	boomErrorHandler,
-} = require('./middlewares/error.handler');
+const passport = require('passport')
+const { logErrors,ormErrorHandler,errorHandler,boomErrorHandler } = require('./middlewares/error.handler');
 
 const app = express();
 const port = config.port || 4000;
@@ -41,6 +37,8 @@ app.get('/nueva-ruta', checkApiKey, (req, res) => {
 app.listen(port, () => {
 	console.log(`Mi puerto es: ${port}`);
 });
+
+app.use(passport.initialize());
 
 routerApi(app);
 
