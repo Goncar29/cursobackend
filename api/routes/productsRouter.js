@@ -9,7 +9,6 @@ const router = express.Router();
 const service = new ProductService();
 
 router.get('/',
-	passport.authenticate('jwt', {session: false}),
 	validatorHandler(queryProductSchema, 'query'),
 	async (req, res, next) => {
 	// ruta dinamica, 2° lugar
@@ -22,14 +21,12 @@ router.get('/',
 });
 
 router.get('/filter',
-	passport.authenticate('jwt', {session: false}),
 	async (req, res) => {
 	// ruta estatica, 1° lugar
 	res.send('Yo soy un filter');
 });
 
 router.get('/:id',
-	passport.authenticate('jwt', {session: false}),
 	validatorHandler(getProductSchema, 'params'),
 	async (req, res, next) => {
 		try {
@@ -57,6 +54,7 @@ router.post('/',
 );
 
 router.patch('/:id',
+	passport.authenticate('jwt', {session: false}),
 	validatorHandler(getProductSchema, 'params'),
 	validatorHandler(updateProductSchema, 'body'),
 	async (req, res, next) => {
@@ -72,6 +70,7 @@ router.patch('/:id',
 );
 
 router.delete('/:id',
+	passport.authenticate('jwt', {session: false}),
 	validatorHandler(getProductSchema, 'params'),
 	async (req, res, next) => {
 		try {

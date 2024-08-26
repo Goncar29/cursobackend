@@ -8,16 +8,19 @@ const { createOrderSchema, getOrderSchema, addItemSchema } = require('./../schem
 const router = express.Router();
 const service = new OrderService();
 
-router.get('/', async (req, res) => {
-	try {
-		const orders = await service.find()
-		res.json(orders)
-	} catch (error) {
-		res.status(404).json({
-			message: error.message
-		})
+router.get('/',
+	passport.authenticate('jwt', {session: false}),
+	async (req, res) => {
+		try {
+			const orders = await service.find()
+			res.json(orders)
+		} catch (error) {
+			res.status(404).json({
+				message: error.message
+			})
+		}
 	}
-})
+)
 
 router.get('/:id',
 	passport.authenticate('jwt', {session: false}),

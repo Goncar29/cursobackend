@@ -6,8 +6,31 @@ function checkApiKey(req, res, next){
 	if (apiKey === config.apiKey){
 		next();
 	} else{
-		next(boom.unauthorized());
+		next(boom.unauthorized('Unauthorized Key'));
 	}
 }
 
-module.exports = { checkApiKey };
+function checkAdminRole(req, res, next) {
+	console.log(req.user);
+	const user = req.user;
+	if (user.role === 'customer') {
+		next()
+	}else{
+		next(boom.unauthorized('Unauthorized Role'));
+	}
+}
+
+function checkRoles(...roles) {
+	return (req, res, next) => {
+		const user = req.user;
+		console.log(req.user);
+		if (roles.includes(user.role)) {
+			next()
+		}else{
+			next(boom.unauthorized('Unauthorized Role'));
+		}
+	}
+
+}
+
+module.exports = { checkApiKey, checkAdminRole, checkRoles };
