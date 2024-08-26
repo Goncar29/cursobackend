@@ -13,6 +13,7 @@ const config = {
 	dbEngine: process.env.DB_ENGINE, // postgres
 	dbUrl: process.env.POSTGRES_URL,
 	apiKey: process.env.API_KEY,
+	jwtSecret: process.env.JWT_SECRET
 }
 
 module.exports = { config };
