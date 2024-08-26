@@ -34,7 +34,7 @@ router.get('/:id',
 
 router.post('/',
 	passport.authenticate('jwt', {session: false}),
-	checkRoles('customer'),
+	// checkRoles('customer'),
 	validatorHandler(createCategorySchema, 'body'),
 	async (req, res, next) => {
 		try {
@@ -47,7 +47,7 @@ router.post('/',
 });
 
 router.patch('/:id',
-	checkRoles('admin'),
+	// checkRoles('admin'),
 	passport.authenticate('jwt', {session: false}),
 	validatorHandler(getCategorySchema, 'params'),
 	validatorHandler(updateCategorySchema, 'body'),
@@ -63,7 +63,7 @@ router.patch('/:id',
 });
 
 router.delete('/:id',
-	checkRoles('admin'),
+	// checkRoles('admin'),
 	passport.authenticate('jwt', {session: false}),
 	validatorHandler(getCategorySchema, 'params'),
 	async (req, res, next) => {

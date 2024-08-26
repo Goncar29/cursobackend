@@ -6,7 +6,7 @@ const validatorHandler = require('../middlewares/validator.handler');
 const { createCustomerSchema, getCustomerSchema, updateCustomerSchema } = require('./../schemas/customer.schema');
 
 const router = express.Router();
-service = new CustomerService();
+const service = new CustomerService();
 
 router.get('/',
 	passport.authenticate('jwt', {session: false}),
@@ -47,7 +47,7 @@ router.post('/',
 );
 
 router.patch('/:id',
-	passport.authenticate('jwt', {session: false}),
+	// passport.authenticate('jwt', {session: false}),
 	validatorHandler(getCustomerSchema, 'params'),
 	validatorHandler(updateCustomerSchema, 'body'),
 	async (req, res, next) => {
@@ -62,7 +62,7 @@ router.patch('/:id',
 });
 
 router.delete('/:id',
-	passport.authenticate('jwt', {session: false}),
+	// passport.authenticate('jwt', {session: false}),
 	validatorHandler(getCustomerSchema, 'params'),
 	async (req, res, next) => {
 		try {
