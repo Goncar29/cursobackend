@@ -1,4 +1,5 @@
 const express = require('express');
+const passport = require('passport');
 
 const ProductService = require('./../services/product.service');
 const validatorHandler = require('./../middlewares/validator.handler');
@@ -8,6 +9,7 @@ const router = express.Router();
 const service = new ProductService();
 
 router.get('/',
+	passport.authenticate('jwt', {session: false}),
 	validatorHandler(queryProductSchema, 'query'),
 	async (req, res, next) => {
 	// ruta dinamica, 2° lugar
@@ -19,12 +21,15 @@ router.get('/',
 		}
 });
 
-router.get('/filter', async (req, res) => {
+router.get('/filter',
+	passport.authenticate('jwt', {session: false}),
+	async (req, res) => {
 	// ruta estatica, 1° lugar
 	res.send('Yo soy un filter');
 });
 
 router.get('/:id',
+	passport.authenticate('jwt', {session: false}),
 	validatorHandler(getProductSchema, 'params'),
 	async (req, res, next) => {
 		try {
@@ -38,6 +43,7 @@ router.get('/:id',
 );
 
 router.post('/',
+	passport.authenticate('jwt', {session: false}),
 	validatorHandler(createProductSchema, 'body'),
 	async (req, res) => {
 		try {
