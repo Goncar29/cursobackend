@@ -38,10 +38,9 @@ router.get('/:id',
 
 router.post('/',
 	passport.authenticate('jwt', {session: false}),
-	validatorHandler(createOrderSchema, 'body'),
 	async (req, res) => {
 		try {
-			const body = req.body;
+			const body = req.user;
 			const newOrder = await service.create(body);
 			res.status(201).json(newOrder);
 		} catch (error) {
