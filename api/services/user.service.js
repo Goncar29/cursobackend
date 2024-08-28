@@ -19,7 +19,7 @@ class UserService {
 
 	async find() {
 		const result = await models.User.findAll({
-			include: ['Customer']
+			include: ['customer']
 		});
 		return result;
 	}

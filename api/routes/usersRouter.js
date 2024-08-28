@@ -3,13 +3,13 @@ const passport = require('passport');
 
 const UserService = require('./../services/user.service');
 const validatorHandler = require('./../middlewares/validator.handler');
-const {  getUserSchema, createUserSchema, updateUserSchema } = require('./../schemas/user.schema');
+const { getUserSchema, createUserSchema, updateUserSchema } = require('./../schemas/user.schema');
 
 const router = express.Router();
 const service = new UserService();
 
 router.get('/',
-	passport.authenticate('jwt', {session: false}),
+	// passport.authenticate('jwt', {session: false}),
 		async (req, res, next) => {
 		try {
 			const users = await service.find();
@@ -65,7 +65,7 @@ router.patch('/:id',
 );
 
 router.delete('/:id',
-	// passport.authenticate('jwt', {session: false}),
+	passport.authenticate('jwt', {session: false}),
 	validatorHandler(getUserSchema, 'params'),
 	async (req, res, next) => {
 		try {
