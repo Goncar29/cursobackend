@@ -13,7 +13,9 @@ const config = {
 	dbEngine: process.env.DB_ENGINE, // postgres
 	dbUrl: process.env.POSTGRES_URL,
 	apiKey: process.env.API_KEY,
-	jwtSecret: process.env.JWT_SECRET
+	jwtSecret: process.env.JWT_SECRET,
+	mailUser: process.env.MAIL_USER,
+	mailPassword: process.env.MAIL_PASS
 }
 
 module.exports = { config };
