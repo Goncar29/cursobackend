@@ -54,16 +54,21 @@ class OrderService {
 			'items'
 			]
 		});
+		if (!order) {
+			throw boom.notFound('Order not found');
+		}
 		return order;
 	}
 
 	async update(id, changes) {
-		return {
-			id,
-			changes,
-		};
+		const order = await this.findOne(id) // reutilizamos codigo
+		const result = await order.update(changes);
+		return result;
 	}
+
 	async delete(id) {
+		const order = await this.findOne(id) // reutilizamos codigo
+		await order.destroy();
 		return { id };
 	}
 }

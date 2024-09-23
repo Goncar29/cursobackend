@@ -22,12 +22,16 @@ class CategoryService {
 	}
 
 	async update(id, changes) {
-		return {
-			id,
-			changes,
-		};
+		const category = await this.findOne(id) // reutilizamos codigo
+		const result = await category.update(changes);
+		return result;
 	}
 	async delete(id) {
+		const category = await this.findOne(id) // reutilizamos codigo
+		if (!category) {
+			throw boom.notFound('Category not found');
+		}
+		await category.destroy();
 		return { id };
 	}
 }
